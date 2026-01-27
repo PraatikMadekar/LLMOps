@@ -1,0 +1,96 @@
+╔══════════════════════════════════════════════════════════════════════════╗
+║                     LLMOps Quick Reference Card                          ║
+╚══════════════════════════════════════════════════════════════════════════╝
+
+🚀 QUICK START (3 Steps)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Double-click: install_and_setup.bat
+2. Double-click: run_app.bat  
+3. Open browser: http://localhost:8000
+
+📦 INSTALLED COMPONENTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ LLM: ChatGroq (openai/gpt-oss-120b)
+✅ Embeddings: HuggingFace (sentence-transformers/all-MiniLM-L6-v2)
+✅ Vector Store: FAISS with MMR search
+✅ Framework: LangChain + FastAPI
+✅ LangSmith: Enabled for tracing
+
+🔑 REQUIRED API KEYS (Already Configured)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ GROQ_API_KEY
+✅ HUGGINGFACEHUB_API_TOKEN  
+✅ LANGCHAIN_API_KEY (optional)
+
+📂 IMPORTANT FILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+.env                        → API keys configuration
+requirements.txt            → Python dependencies
+main.py                     → Application entry point
+install_and_setup.bat      → One-click installation
+run_app.bat                → One-click run
+test_setup.bat             → Test configuration
+SETUP_GUIDE.md             → Full documentation
+FIXES_APPLIED.md           → What was changed
+
+🔧 MANUAL COMMANDS (If needed)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Create venv:     python -m venv venv
+Activate venv:   venv\Scripts\activate
+Install deps:    pip install -r requirements.txt
+Run app:         python main.py
+Test config:     python -m multi_doc_chat.utils.model_loader
+
+🌐 ENDPOINTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+GET  /              → Web UI
+GET  /health        → Health check
+POST /upload        → Upload documents
+POST /chat          → Chat with documents
+
+📊 SUPPORTED FILE TYPES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ PDF (.pdf)
+✅ Word (.docx)
+✅ Text (.txt)
+
+⚙️ CONFIGURATION VALUES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Chunk Size:      1000 characters
+Chunk Overlap:   200 characters
+Top K:           10 documents
+Fetch K:         20 (for MMR)
+Lambda:          0.5 (relevance vs diversity)
+Temperature:     0 (deterministic)
+Max Tokens:      2048
+
+🐛 TROUBLESHOOTING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Issue                          Solution
+─────────────────────────────  ──────────────────────────────────
+Module not found               Activate venv: venv\Scripts\activate
+API key error                  Check .env file (no quotes!)
+Port in use                    Change port in main.py
+Can't download model           Check internet connection
+Groq API error                 Verify API key is valid
+
+💡 TIPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+• First run downloads embedding model (~80MB)
+• Each upload creates a unique session
+• Sessions persist until server restart
+• Use LangSmith for debugging traces
+• MMR provides diverse, relevant results
+
+📍 PROJECT LOCATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+C:\Users\MIRACLE\Desktop\LLMOps
+
+🎯 READY TO USE!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+All fixes applied. Project is ready to run!
+Just run: install_and_setup.bat
+
+╔══════════════════════════════════════════════════════════════════════════╗
+║  For detailed instructions, see SETUP_GUIDE.md or FIXES_APPLIED.md      ║
+╚══════════════════════════════════════════════════════════════════════════╝

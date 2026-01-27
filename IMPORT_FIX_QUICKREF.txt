@@ -1,0 +1,62 @@
+================================================================================================
+                        LANGCHAIN IMPORT FIX - QUICK REFERENCE
+================================================================================================
+
+WHAT WAS CHANGED:
+----------------
+Old import: from langchain.schema import Document
+New import: from langchain_core.documents import Document
+
+FILES MODIFIED:
+--------------
+✓ multi_doc_chat/src/document_ingestion/data_ingestion.py
+✓ multi_doc_chat/utils/document_ops.py  
+✓ tests/unit/test_data_ingestion.py
+
+WHY THIS CHANGE:
+---------------
+- langchain.schema is deprecated in LangChain v0.2+
+- Core types moved to langchain_core package
+- Prevents future compatibility issues
+
+VERIFY THE FIX:
+--------------
+Option 1: Run the check script
+    check_imports.bat
+
+Option 2: Manual search
+    cd ~/Desktop/LLMOps
+    grep -r "from langchain.schema" --include="*.py"
+    (Should return no results)
+
+TEST THE CHANGES:
+----------------
+1. Activate virtual environment:
+   venv\Scripts\activate
+
+2. Test imports work:
+   python -c "from langchain_core.documents import Document; print('Success!')"
+
+3. Run the application:
+   python main.py
+
+4. Run tests (optional):
+   pytest tests/ -v
+
+TROUBLESHOOTING:
+---------------
+If you see "ModuleNotFoundError":
+    pip install --upgrade langchain-core
+
+If tests fail:
+    pip install -r requirements.txt
+
+NEXT STEPS:
+----------
+1. Run check_imports.bat to verify all changes
+2. Test the application: python main.py
+3. Push to git (after fixing the secrets issue)
+
+================================================================================================
+                                    ALL DONE! ✅
+================================================================================================
