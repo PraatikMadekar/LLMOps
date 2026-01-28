@@ -20,18 +20,32 @@
             "appProtocol": "http"
           }
         ],
+        "healthCheck": {
+          "command": ["CMD-SHELL", "curl -f http://localhost:8080/health || exit 1"],
+          "interval": 30,
+          "timeout": 5,
+          "retries": 3,
+          "startPeriod": 60
+        },
         "environment": [
           {
             "name": "ENV",
             "value": "production"
+          },
+          {
+            "name": "LLM_PROVIDER",
+            "value": "groq"
           }
         ],
         "secrets": [
           {
-            "name": "apikeyliveclass",
-            "valueFrom": "arn:aws:secretsmanager:us-east-2:339712993834:secret:apikeyliveclassTest-q1PGdB"
+            "name": "GROQ_API_KEY",
+            "valueFrom": "arn:aws:secretsmanager:us-east-2:339712993834:secret:apikeyliveclassTest-q1PGdB:GROQ_API_KEY::"
+          },
+          {
+            "name": "GOOGLE_API_KEY",
+            "valueFrom": "arn:aws:secretsmanager:us-east-2:339712993834:secret:apikeyliveclassTest-q1PGdB:GOOGLE_API_KEY::"
           }
-  
         ],
         "logConfiguration": {
           "logDriver": "awslogs",
