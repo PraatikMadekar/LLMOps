@@ -3,17 +3,17 @@ on:
   workflow_run:
     workflows: ["CI"] # Must match the "name" field in ci.yml
     branches:
-      - main
+      - master  # Changed from 'main' to 'master'
       - DeployOnAWS
     types:
       - completed
   workflow_call:
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: us-east-2  # Changed to us-east-2
   ECR_REPOSITORY: llmopsrepolive
   ECS_SERVICE: llmops-live-service
   ECS_CLUSTER: llmopslive-cluster
-  ECS_TASK_DEFINITION: .github/workflows/task_defination.json
+  ECS_TASK_DEFINITION: .github/workflows/task_definition.json  # Fixed typo
   CONTAINER_NAME: llmops-live-container
 
 permissions:
@@ -25,8 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push') }}
     steps:
-      - name: CI passed on main branch
-        run: echo "CI passed on main branch, proceeding to build and deploy."
+      - name: CI passed on master branch
+        run: echo "CI passed on master branch, proceeding to build and deploy."
 
   # -------------------------------
   # 1. Build & Push Docker Image
