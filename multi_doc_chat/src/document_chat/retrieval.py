@@ -46,6 +46,9 @@ class ConversationalRAG:
                 self._build_lcel_chain()
 
             log.info("ConversationalRAG initialized", session_id=self.session_id)
+        except DocumentPortalException:
+            # Re-raise DocumentPortalException without wrapping
+            raise
         except Exception as e:
             log.error("Failed to initialize ConversationalRAG", error=str(e))
             raise DocumentPortalException("Initialization error in ConversationalRAG", sys)
@@ -109,6 +112,9 @@ class ConversationalRAG:
             )
             return self.retriever
 
+        except DocumentPortalException:
+            # Re-raise DocumentPortalException without wrapping
+            raise
         except Exception as e:
             log.error("Failed to load retriever from FAISS", error=str(e))
             raise DocumentPortalException("Loading error in ConversationalRAG", sys)
@@ -142,6 +148,9 @@ class ConversationalRAG:
                 answer_preview=str(answer)[:150],
             )
             return answer
+        except DocumentPortalException:
+            # Re-raise DocumentPortalException without wrapping
+            raise
         except Exception as e:
             log.error("Failed to invoke ConversationalRAG", error=str(e))
             raise DocumentPortalException("Invocation error in ConversationalRAG", sys)
